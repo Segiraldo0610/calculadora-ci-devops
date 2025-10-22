@@ -3,7 +3,7 @@ name: Java CI con Maven
 # Cuándo ejecutar este workflow
 on:
   push:
-    branches: [ main, develop ]  # cámbialo a "master" si tu rama principal se llama así
+    branches: [ main, develop ]
   pull_request:
     branches: [ main ]
 
@@ -13,19 +13,23 @@ permissions:
 
 jobs:
   build:
-    name: Build y Test
+    name: Build y Test en múltiples versiones de Java
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: ['11', '17', '21']
 
     steps:
       # Paso 1: Descargar el código del repositorio
       - name: 📥 Checkout del código
         uses: actions/checkout@v4
 
-      # Paso 2: Configurar Java JDK 17
-      - name: ☕ Configurar JDK 17
+      # Paso 2: Configurar Java JDK (usando la versión del matrix)
+      - name: ☕ Configurar JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
           cache: maven
 
@@ -50,7 +54,7 @@ jobs:
       - name: 📤 Subir JAR
         uses: actions/upload-artifact@v4
         with:
-          name: calculadora-jar
+          name: calculadora-jar-${{ matrix.java-version }}
           path: target/*.jar
           retention-days: 5
 
@@ -58,5 +62,5 @@ jobs:
       - name: ✅ Build exitoso
         if: success()
         run: |
-          echo "✅ ¡Todos los tests pasaron correctamente!"
+          echo "✅ ¡Todos los tests pasaron correctamente con Java ${{ matrix.java-version }}!"
           echo "📦 Artefacto JAR generado y disponible como artefacto en Actions."

@@ -62,4 +62,61 @@ public class Calculadora {
         }
         return a % b;
     }
+    /**
+     * Calcula la potencia de un número (a^b)
+     * @param base número base
+     * @param exponente exponente (entero)
+     * @return base elevada al exponente
+     */
+    public double potencia(double base, int exponente) {
+        return Math.pow(base, exponente);
+    }
+
+    /**
+     * Calcula la raíz cuadrada de un número
+     * @param a número del que se calcula la raíz
+     * @return raíz cuadrada de a
+     * @throws IllegalArgumentException si el número es negativo
+     */
+    public double raizCuadrada(double a) {
+        if (a < 0) {
+            throw new IllegalArgumentException("No se puede calcular la raíz cuadrada de un número negativo");
+        }
+        return Math.sqrt(a);
+    }
+
+    /**
+     * Calcula el factorial de un número entero
+     * @param n número entero no negativo
+     * @return factorial de n
+     * @throws IllegalArgumentException si n es negativo
+     */
+    public long factorial(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("El factorial no está definido para números negativos");
+        }
+        long resultado = 1;
+        for (int i = 1; i <= n; i++) {
+            resultado *= i;
+        }
+        return resultado;
+    }
+
+    /**
+     * Calcula el máximo común divisor (MCD) de dos números
+     * @param a primer número
+     * @param b segundo número
+     * @return el máximo común divisor de a y b
+     */
+    public int mcd(int a, int b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
 }

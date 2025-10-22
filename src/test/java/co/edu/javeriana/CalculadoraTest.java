@@ -81,5 +81,37 @@ public class CalculadoraTest {
         assertEquals(1, calculadora.modulo(5, 2), "5 % 2 debe ser 1");
         assertEquals(0, calculadora.modulo(10, 5), "10 % 5 debe ser 0");
     }
+    @Test
+    @DisplayName("Test potencia")
+    public void testPotencia() {
+        assertEquals(8.0, calculadora.potencia(2, 3), 0.001);
+        assertEquals(1.0, calculadora.potencia(5, 0), 0.001);
+        assertEquals(0.25, calculadora.potencia(2, -2), 0.001);
+    }
+
+    @Test
+    @DisplayName("Test raíz cuadrada")
+    public void testRaizCuadrada() {
+        assertEquals(4.0, calculadora.raizCuadrada(16), 0.001);
+        assertEquals(0.0, calculadora.raizCuadrada(0), 0.001);
+        assertThrows(IllegalArgumentException.class, () -> calculadora.raizCuadrada(-9));
+    }
+
+    @Test
+    @DisplayName("Test factorial")
+    public void testFactorial() {
+        assertEquals(120, calculadora.factorial(5));
+        assertEquals(1, calculadora.factorial(0));
+        assertThrows(IllegalArgumentException.class, () -> calculadora.factorial(-3));
+    }
+
+    @Test
+    @DisplayName("Test MCD")
+    public void testMcd() {
+        assertEquals(6, calculadora.mcd(54, 24));
+        assertEquals(1, calculadora.mcd(17, 13));
+        assertEquals(10, calculadora.mcd(0, 10));
+    }
+
 }
 
