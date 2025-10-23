@@ -1,5 +1,5 @@
 # 🧮 Calculadora CI/CD
-![Java CI](https://github.com/TU-USUARIO/calculadora-ci-devops/workflows/Java%
+![Java CI](https://github.com/Segiraldo0610/calculadora-ci-devops/workflows/Java%
 20CI%20con%20Maven/badge.svg)
 ![Java](https://img.shields.io/badge/Java-17-orange)
 ![Maven](https://img.shields.io/badge/Maven-3.9-blue)
